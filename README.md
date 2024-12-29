@@ -2,7 +2,9 @@
 
 Catalog API
 - Vertical slice architecture
-- ASP.NET Core 8
-- Use PostgresSQL, Marten for DBConnection
+- ASP.NET Core Web API
+- Framework: .NET CORE 8 
+- Using PostgresSQL, Marten for DBConnection handling
 - Use Mapster for ORM, to deserialize and serialize the json object
-- Use 
+- Hosted at Docker (docker-compose)
+- Use Carter for API design handling
