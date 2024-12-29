@@ -7,4 +7,5 @@ Catalog API
 - Using PostgreSQL, Marten for DBConnection handling
 - Use Mapster for ORM, to deserialize and serialize the json object
 - Hosted at Docker (docker-compose)
-- Use MediatR and Carter for API design handling
+- Use Carter for API design handling
+- Use MediatR for CQRS handling 
