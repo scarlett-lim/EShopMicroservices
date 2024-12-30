@@ -6,8 +6,6 @@ services:
       dockerfile: Services/Catalog/Catalog.API/Dockerfile
   catalogdb:
     image: postgres
-    # build:
-    #   dockerfile: Services/Catalog/Catalog.API/Dockerfile
 volumes:
   postgres_catalog:
 
