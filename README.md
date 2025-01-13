@@ -8,4 +8,5 @@ Catalog API
 - Use Mapster for ORM, to deserialize and serialize the json object
 - Hosted at Docker (docker-compose)
 - Use Carter for Minimal API design handling
-- Use MediatR for CQRS handling 
+- Use MediatR for CQRS handling
+- Use FluentValidation to validate the params before triggering the command/query handle
