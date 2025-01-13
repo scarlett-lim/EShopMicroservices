@@ -9,4 +9,5 @@ Catalog API
 - Hosted at Docker (docker-compose)
 - Use Carter for Minimal API design handling
 - Use MediatR for CQRS handling
-- Use FluentValidation to validate the params before triggering the command/query handle
+- Use FluentValidation to validate the mediatr pipeline
+- 
