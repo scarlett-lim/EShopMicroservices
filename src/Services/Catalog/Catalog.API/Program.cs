@@ -1,15 +1,20 @@
 #region Before building web app
+using BuildingBlocks.Behaviors;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddCarter();  //need to register CARTER to asp.net core DI
-
+var assembly = typeof(Program).Assembly;
 builder.Services.AddMediatR(config =>  //tell the program mediatr where to get the handler
 {
-    config.RegisterServicesFromAssembly(typeof(Program).Assembly);
-});
+    config.RegisterServicesFromAssembly(assembly);
 
-builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
+    //add validation behavior as a pipeline behavior into mediatr
+    config.AddOpenBehavior(typeof(ValidationBehavior<,>));
+});
+builder.Services.AddValidatorsFromAssembly(assembly);
+
+builder.Services.AddCarter();  //need to register CARTER to asp.net core DI
 
 builder.Services.AddMarten(opts =>  
 {
