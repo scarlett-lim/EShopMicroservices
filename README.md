@@ -1,13 +1,11 @@
 # EShopMicroservices
 
 Catalog API
-- Vertical slice architecture
-- ASP.NET Core Web API
-- Framework: .NET CORE 8 
-- Using PostgreSQL, Marten for DBConnection handling
-- Use Mapster for ORM, to deserialize and serialize the json object
-- Hosted at Docker (docker-compose)
-- Use Carter for Minimal API design handling
-- Use MediatR for CQRS handling
-- Use FluentValidation to validate the mediatr pipeline
-- 
+- Using ASP.NET Core Minimal APIs and latest features of .NET8 and C# 12
+- Vertical Slice Architecture implementation with Feature folders and single .cs file includes different classes in one file
+- CQRS implementation using MediatR library
+- CQRS Validation Pipeline Behaviors with MediatR and FluentValidation
+- Use Marten library for .NET Transactional Document DB on PostgreSQL, so Product microservices database will be PostgreSQL but acting as a Document DB using Marten library
+- Use Carter for Minimal API endpoint definition
+- Cross-cutting concerns Logging, Global Exception Handling and Health Checks
+- Implement Dockerfile and docker-compose file for running Product microservice and PostgreSQL database in Docker environment
