@@ -7,6 +7,9 @@ public record CreateProductCommand(string Name, List<string> Category, string De
 // result returned if created successfully
 public record CreateProductResult(Guid Id);
 
+
+
+// validate incoming createproductcommand before the commandhandler been trigger
 public class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
 {
     public CreateProductCommandValidator()
@@ -20,14 +23,12 @@ public class CreateProductCommandValidator : AbstractValidator<CreateProductComm
 
 //business logic to handle CreateProductCommand
 internal class CreateProductCommandHandler
-    (IDocumentSession session, ILogger<CreateProductCommandHandler> logger)
+    (IDocumentSession session)
     : ICommandHandler<CreateProductCommand, CreateProductResult>
 {
     public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
     {
         //Business logic to create a product
-        logger.LogInformation("CreateProductCommandHandler.Handle called with {@Command}", command);    
-
         // Create Product Entity from command object
         var product = new Product
         {

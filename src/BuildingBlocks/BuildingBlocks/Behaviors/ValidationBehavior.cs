@@ -7,7 +7,7 @@ namespace BuildingBlocks.Behaviors
     public class ValidationBehavior<TRequest, TResponse>
         (IEnumerable<IValidator<TRequest>> validators)
         : IPipelineBehavior<TRequest, TResponse>
-        // it means will process the request come from crud , it will not work for the IQuery
+        // it means will process the request come from crud(create, update, delete) , it will not work for the IQuery
         where TRequest : ICommand<TResponse>  
     {
         public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
