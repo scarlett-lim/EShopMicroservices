@@ -1,5 +1,4 @@
 #region Before building web app
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,7 +6,6 @@ var assembly = typeof(Program).Assembly;
 builder.Services.AddMediatR(config =>  //tell the program mediatr where to get the handler
 {
     config.RegisterServicesFromAssembly(assembly);
-
     //add validation behavior as a pipeline behavior into mediatr
     config.AddOpenBehavior(typeof(ValidationBehavior<,>));
     config.AddOpenBehavior(typeof(LoggingBehavior<,>));
@@ -20,6 +18,11 @@ builder.Services.AddMarten(opts =>
 {
     opts.Connection(builder.Configuration.GetConnectionString("Database")!);
 }).UseLightweightSessions();
+
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.InitializeMartenWith<CatalogInitialData>();  //initialize the data for development environment
+}
 
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
