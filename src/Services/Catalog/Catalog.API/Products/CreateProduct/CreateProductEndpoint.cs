@@ -8,7 +8,7 @@
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            // minimal api post method
+            // minimal api post method, get the json body
             app.MapPost("/products",
                 async (CreateProductRequest request, ISender sender) =>
             {

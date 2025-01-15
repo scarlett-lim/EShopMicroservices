@@ -13,6 +13,7 @@ namespace Catalog.API.Products.GetProductsById
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
+            // passed in the param without param name, just the value
             app.MapGet("/products/{id}", async (Guid id, ISender sender) =>
             {
                 // passed in the query object to getproductsbyidhandler
