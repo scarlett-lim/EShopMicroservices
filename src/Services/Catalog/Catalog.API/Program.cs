@@ -1,4 +1,7 @@
 #region Before building web app
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -26,6 +29,10 @@ if (builder.Environment.IsDevelopment())
 
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
+//add health check for db connection and the catalog.api
+builder.Services.AddHealthChecks()
+    .AddNpgSql(builder.Configuration.GetConnectionString("Database"));
+
 var app = builder.Build();
 #endregion
 
@@ -36,6 +43,14 @@ var app = builder.Build();
 app.MapCarter();
 
 app.UseExceptionHandler(options => { });
+
+app.UseHealthChecks("/health",
+    //make the return response as json
+    new HealthCheckOptions 
+    {
+        ResponseWriter=UIResponseWriter.WriteHealthCheckUIResponse
+    });
+
 
 app.Run();
 #endregion
