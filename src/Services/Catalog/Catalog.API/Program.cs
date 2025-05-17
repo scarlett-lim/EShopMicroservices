@@ -31,7 +31,7 @@ builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
 //add health check for db connection and the catalog.api
 builder.Services.AddHealthChecks()
-    .AddNpgSql(builder.Configuration.GetConnectionString("Database"));
+    .AddNpgSql(builder.Configuration.GetConnectionString("Database")!);
 
 var app = builder.Build();
 #endregion
